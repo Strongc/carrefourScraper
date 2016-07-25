@@ -17,11 +17,11 @@ __author__ = 'Guo Zhang'
 
 __contributors__ = ''
 
-__last_edit_date__ = '2016-7-24'
+__last_edit_date__ = '2016-7-25'
 
 __creation_date__ = '2016-7-24'
 
-__moduleVersion__ = '1.0'
+__moduleVersion__ = '1.1'
 
 __doc__ = '''
 A page scraper of carrefourScraper for China's Prices Project.
@@ -96,6 +96,7 @@ class CarrefourPageScraper(object):
             data4 = ''
         data5='%7D'
         post_data = ''.join([data1,keyword,data2,str(self.page_num),data3,data4,data5])
+        print(post_data)
         return post_data
         
     def getJSON(self):
@@ -117,13 +118,13 @@ class CarrefourPageScraper(object):
 'language': 'zh-CN',
 'User-Agent': user_agent,
 'http':proxy,
-'osVersion': '4.4',
+#'osVersion': '4.4',
 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
 'Accept': 'application/json, text/plain, */*',
 #'unique': 'android-af204dccbb3669c1',
 #'x-wap-profile': 'http://wap1.huawei.com/uaprof/HW_HUAWEI_MT7-CL00_2_20140903.xml',
 #'subsiteId': '46',
-'os': 'android',
+#'os': 'android',
 'appVersion': '1.2.0',
 'Accept-Encoding': 'gzip,deflate',
 'Accept-Language': 'zh-CN,en-US;q=0.8',
@@ -134,6 +135,7 @@ class CarrefourPageScraper(object):
         url = 'https://www.carrefour.cn/mobile/api/product/search'
         post_data = self.joinPostData()
         r = requests.post(url,data = post_data,verify=False,headers=headers)
+        print(r.content)
         return r.json()
     
     def getTotalPageNumber(self):
